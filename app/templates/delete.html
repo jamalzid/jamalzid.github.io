@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load bootstrap %}
+{% block content %}
+    <div class="container mx-auto">
+        <span class="d-block p-2 bg-light text-black">
+            <div class="row mx-auto col-xs-1"  align="center">
+                <h3>are you sure you want delete "{{task}} " ?</h3>
+                <br>
+            </div>
+        </span>
+        <form method='POST' action='' class="form-inline my-2 my-lg-0container mx-auto col-xs-1">
+            <div class="row">
+                    {% csrf_token %}
+                    
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">delete</button>
+        </div>
+        </form>
+
+
+
+
+    </div>
+
+{% endblock content %}

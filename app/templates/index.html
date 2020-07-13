@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load bootstrap %}
+{% block content %}
+  
+    <div class="container mx-auto">
+        <h1>Incomplete Tasks</h1>
+    
+        
+        <form method='POST' action='/' class="form-inline my-2 my-lg-0container mx-auto col-xs-1" >
+            <div class="row">
+                
+                {% csrf_token %}
+                <div class="col">
+                {{ form.title|bootstrap }}
+                </div>
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Add</button>
+            </div>
+        </form>
+        <br>
+        {% for task in tasks %}
+        <div class="container mx-auto col-xs-1" >
+            <span class="d-block p-2 bg-light text-black">
+                <div class="row">
+                    <div class="col-lg-7">
+                        
+                        {% if task.completed == 'True'  %}
+                            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>>{{task}}</strike>
+                        
+                        {% else %}
+                             <strong>{{task}}</strong>
+                        {% endif %}
+                    </div>
+                    <div class="col-lg-3">
+                         <a href="{% url 'app:edite' task.id %}" class="badge badge-success">edite task</a>
+                        <a href="{% url 'app:delete' task.id %}" class="badge badge-danger">delete task</a>
+                    </div>
+                <br><br>
+                </div>
+            </span>
+        </div>
+        {% endfor %}
+
+
+    </div>
+
+{% endblock content %}
